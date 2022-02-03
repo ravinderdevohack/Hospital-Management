@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-center">
+  <%= link_to "Make a Appointment", new_appointment_path, medthod: :get, class: "nav-link color-black"%>
+</div>
+<table class="d-flex justify-content-center ">
+  <tr>
+    <th class="border-2 p-1">Appointment ID</th>
+    <th class="border-2 p-1">Patient Name</th>
+    <th class="border-2 p-1">Contact</th>
+    <th class="border-2 p-1">Date</th>
+    <th class="border-2 p-1">Doctor Name</th>
+  </tr>
+  <tr>
+    <% @appointments.each do |appointment|%>
+      <% if current_user.email == appointment.email%>
+        <td class="border-2 p-1"><%= appointment.id %></td>
+        <td class="border-2 p-1"><%= appointment.name %></td>
+        <td class="border-2 p-1"><%= appointment.phone_number %></td>
+        <td class="border-2 p-1"><%=  %></td>
+        <td class="border-2 p-1"><%= appointment.doctor.name %></td>
+      <% end%>
+    <% end %>
+  </tr>
+
+</table>

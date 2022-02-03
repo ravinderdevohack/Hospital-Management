@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center">
+  <%= form_with model: @appointment, url: appointments_path, method: :post, id:'myAppointment' do |form| %>
+    <%= form.label :name, "Name"%><br>
+    <%= form.text_field :name, class:'input'%><br>
+
+    <%= form.label :phone_number, "Contact"%><br>
+    <%= form.text_field :phone_number, class:'input'%><br>
+
+    <%= form.label :department, "Department"%><br>
+    <%= form.text_field :department_id, class:'input'%><br>
+
+    <%= form.label :doctor_id, "Doctor ID"%><br>
+    <%= form.text_field :doctor_id, class:'input'%><br>
+
+    <%= form.label :Datetime, "Choose date"%><br>
+    <%= form.date_field :Datetime, class:'input'%><br>
+
+    <input type="submit" value="submit", id="submit-btn"></input>
+  <% end %>
+</div>
+
+

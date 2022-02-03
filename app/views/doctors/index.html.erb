@@ -1,0 +1,13 @@
+<table class="d-flex justify-content-center ">
+  <tr>
+    <th class="border-2 p-1">Name</th>
+    <th class="border-2 p-1">Specialist</th>
+  </tr>
+  <tr>
+    <% @doctors.each do |doctor|%>
+      <td class="border-2 p-1"><%= doctor.name %></td>
+      <td class="border-2 p-1"><%= doctor.specialist %></td>
+    <% end %>
+  </tr>
+
+</table>
