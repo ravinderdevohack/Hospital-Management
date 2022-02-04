@@ -1,0 +1,65 @@
+<%= link_to 'Add Employee', new_employee_path, method: :get %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Serial no.</th>
+      <th scope="col">Employee ID</th>
+      <th scope="col">Employee Type</th>
+      <th scope="col">Employee Name</th>
+      <th scope="col">Department</th>
+      <th scope="col">Specialist</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">Aadhar Number</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Joining Date</th>
+      <th scope="col">Resignation Date</th>
+      <th scope="col">Active</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @count = 0 %>
+    <% @employees.each do |employee|%>
+      <% if employee.employee_type != 'admin' %>
+        <% @count = @count +1 %>
+        <tr>
+          <th scope="row"><%= @count%></th>
+          <td><%= employee.id %></td>
+          <td><%= employee.employee_type %></td>
+          <td><%= employee.name %></td>
+          <td><%= employee.department %></td>
+          <td><%= employee.specialist %></td>
+          <td><%= employee.phone_number %></td>
+          <td><%= employee.email %></td>
+          <td><%= employee.address %></td>
+          <td><%= employee.aadhar_number %></td>
+          <td><%= employee.salary %></td>
+          <td><%= employee.joining_date %></td>
+          <td><%= employee.resignation_date %></td>
+          <td><%= employee.active %></td>
+          <td class="d-flex">
+            <%= button_to 'Details', employee_path(employee), method: :get, class:'btn btn-info' %>
+            <%= button_to 'Edit', edit_employee_path(employee), method: :get, class:'btn btn-success' %>
+            <%= button_to 'Delete', employee_path(employee), method: :delete, class:'btn btn-primary', id:"delete-btn" %>
+          </td>
+        </tr>
+      <% end%>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+  button = document.getElementById("delete-btn");
+  button.addEventListener('click', function(e) {
+    if(confirm('Are you Sure?')){
+
+    }else {
+      e.preventDefault();
+    }
+
+  })
+</script>

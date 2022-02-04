@@ -11,7 +11,8 @@
   </tr>
   <tr>
     <% @appointments.each do |appointment|%>
-      <% if current_user.email == appointment.email%>
+
+      <% if employee_signed_in? && current_employee.email == appointment.email%>
         <td class="border-2 p-1"><%= appointment.id %></td>
         <td class="border-2 p-1"><%= appointment.name %></td>
         <td class="border-2 p-1"><%= appointment.phone_number %></td>

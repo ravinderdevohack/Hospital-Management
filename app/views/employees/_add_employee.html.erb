@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <%= form_with model: @employee, url: @action == 'edit' ? employee_path : employees_path, method: @aciton == 'edit' ? :patch : :post, id:'myEmployee' do |form| %>
+    <%= form.label :name, "Name"%><br>
+    <%= form.text_field :name, class:'input form-control'%><br>
+
+    <%= form.label :employee_type, "Employee Type"%><br>
+    <%= form.text_field :employee_type, class:'input form-control'%><br>
+
+    <%= form.label :department, "Department Name"%><br>
+    <%= form.text_field :department, class:'input form-control'%><br>
+
+    <%= form.label :specialist, "Specialist"%><br>
+    <%= form.text_field :specialist, class:'input form-control'%><br>
+
+    <%= form.label :phone_number, "Contact"%><br>
+    <%= form.text_field :phone_number, class:'input form-control'%><br>
+
+    <%= form.label :email, "Email"%><br>
+    <%= form.email_field :email, class:'input form-control'%><br>
+
+    <%= form.label :aadhar_number, "Aadhar Number"%><br>
+    <%= form.text_field :aadhar_number, class:'input form-control'%><br>
+
+    <%= form.label :address, "Address"%><br>
+    <%= form.text_area :address, class:'input form-control'%><br>
+
+    <%= form.label :salary, "Salary"%><br>
+    <%= form.text_field :salary, class:'input form-control'%><br>
+
+    <%= form.label :joining_date, "Joining Date"%><br>
+    <%= form.date_field :joining_date, class:'input form-control'%><br>
+
+    <%= form.label :password, "Password"%><br>
+    <%= form.password_field :password, class:'input form-control'%><br>
+
+    <input type="submit" value="submit", id="submit-btn"></input>
+  <% end %>
+</div>
+
+

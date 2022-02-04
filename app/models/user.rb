@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [ :github, :google_oauth2]
+  # devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [ :github, :google_oauth2]
 
   enum user_type: {user: 0, admin: 1}
   enum display: {show: 1, show_not: 0}

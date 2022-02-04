@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center">
+  <div class="card text-center" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Name: <%= @employee.name %></h5>
+      <p class="card-text">
+        Specialist: <%= @employee.specialist %><br>
+        Department: <%= @employee.department %><br>
+        Aadhar Number: <%= @employee.aadhar_number %><br>
+        Salary: <%= @employee.salary %><br>
+        Phone: <%= @employee.phone_number %><br>
+        Email: <%= @employee.email %><br> 
+        Address: <%= @employee.address %><br>
+        Joining Date: <%= @employee.joining_date %><br>
+
+
+      <%= button_to 'Back', employees_path, method: :get, class:'btn btn-info' %><br>
+
+      </p>
+    </div>
+  </div>
+</div>
