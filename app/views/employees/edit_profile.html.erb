@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center">
+  <%= form_with model: @employee, url: employee_path(current_employee[:id]),  method: :patch,  id:'myProfile' do |form| %>
+    <%= form.label :name, "Name"%><br>
+    <%= form.text_field :name, class:'input form-control'%><br>
+
+    <%= form.label :address, "Address"%><br>
+    <%= form.text_field :address, class:'input form-control'%><br>
+
+
+    <%= form.label :phone_number, "Contact"%><br>
+    <%= form.text_field :phone_number, class:'input form-control'%><br>
+
+    <%= form.label :email, "Email"%><br>
+    <%= form.email_field :email, class:'input form-control'%><br>
+
+    <%= form.label :bio, "About Urself"%><br>
+    <%= form.text_area :bio, class:'input form-control'%><br>
+
+    <%= form.label :password, "Password"%><br>
+    <%= form.password_field :password, class:'input form-control'%><br>
+
+
+    <input type="submit" value="submit", id="submit-btn"></input>
+  <% end %>
+</div>
+
+

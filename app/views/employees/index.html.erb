@@ -31,7 +31,7 @@
           <td><%= employee.id %></td>
           <td><%= employee.employee_type %></td>
           <td><%= employee.name %></td>
-          <td><%= employee.department %></td>
+          <td><%= employee.department.name %></td>
           <td><%= employee.specialist %></td>
           <td><%= employee.phone_number %></td>
           <td><%= employee.email %></td>
@@ -53,13 +53,17 @@
 </table>
 
 <script>
-  button = document.getElementById("delete-btn");
-  button.addEventListener('click', function(e) {
-    if(confirm('Are you Sure?')){
+  button = document.querySelectorAll("#delete-btn");
+  console.log(1)
+  for (var i = 0; i<button.length; i++){
+    button[i].addEventListener('click', function(e) {
+      if(confirm('Are you Sure?')){
 
-    }else {
-      e.preventDefault();
-    }
+      }else {
+        e.preventDefault();
+      }
 
-  })
+    })
+
+  }
 </script>

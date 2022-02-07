@@ -5,21 +5,23 @@
   <tr>
     <th class="border-2 p-1">Appointment ID</th>
     <th class="border-2 p-1">Patient Name</th>
-    <th class="border-2 p-1">Contact</th>
+    <th class="border-2 p-1">Phone Number</th>
+    <th class="border-2 p-1">Email</th>
     <th class="border-2 p-1">Date</th>
     <th class="border-2 p-1">Doctor Name</th>
+    <th class="border-2 p-1">Department Name</th>
   </tr>
-  <tr>
-    <% @appointments.each do |appointment|%>
-
-      <% if employee_signed_in? && current_employee.email == appointment.email%>
+  <% @appointments.each do |appointment|%>
+    <% if (employee_signed_in? &&  current_employee.email == appointment.email) ||(employee_signed_in? && current_employee.employee_type == 'admin')  %>
+      <tr>
         <td class="border-2 p-1"><%= appointment.id %></td>
         <td class="border-2 p-1"><%= appointment.name %></td>
         <td class="border-2 p-1"><%= appointment.phone_number %></td>
-        <td class="border-2 p-1"><%=  %></td>
+        <td class="border-2 p-1"><%= appointment.email %></td>
+        <td class="border-2 p-1"><%= appointment.created_at %></td>
         <td class="border-2 p-1"><%= appointment.doctor.name %></td>
-      <% end%>
-    <% end %>
-  </tr>
+      </tr>
+    <% end%>
+  <% end %>
 
 </table>

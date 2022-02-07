@@ -5,7 +5,7 @@
       <h5 class="card-title">Name: <%= @employee.name %></h5>
       <p class="card-text">
         Specialist: <%= @employee.specialist %><br>
-        Department: <%= @employee.department %><br>
+        Department: <%= @employee.department.name %><br>
         Aadhar Number: <%= @employee.aadhar_number %><br>
         Salary: <%= @employee.salary %><br>
         Phone: <%= @employee.phone_number %><br>
@@ -13,6 +13,7 @@
         Address: <%= @employee.address %><br>
         Joining Date: <%= @employee.joining_date %><br>
 
+      <%= button_to 'Edit Profile', edit_profile_path(current_employee[:id]), method: :get, class:'btn btn-info' %><br>
 
       <%= button_to 'Back', employees_path, method: :get, class:'btn btn-info' %><br>
 

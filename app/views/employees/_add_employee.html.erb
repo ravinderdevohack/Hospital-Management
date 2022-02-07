@@ -1,13 +1,13 @@
 <div class="d-flex justify-content-center">
-  <%= form_with model: @employee, url: @action == 'edit' ? employee_path : employees_path, method: @aciton == 'edit' ? :patch : :post, id:'myEmployee' do |form| %>
+  <%= form_with model: @employee, url: @action == 'edit' ? employee_path : employees_path, method: @action == 'edit' ? :patch : :post, id:'myEmployee' do |form| %>
     <%= form.label :name, "Name"%><br>
     <%= form.text_field :name, class:'input form-control'%><br>
 
     <%= form.label :employee_type, "Employee Type"%><br>
     <%= form.text_field :employee_type, class:'input form-control'%><br>
 
-    <%= form.label :department, "Department Name"%><br>
-    <%= form.text_field :department, class:'input form-control'%><br>
+    <%= form.label :department_id, "Department Name"%><br>
+    <%= form.select :department_id, Department.all.collect{ |d| [d.name, d.id]}, class:'input form-control'%><br>
 
     <%= form.label :specialist, "Specialist"%><br>
     <%= form.text_field :specialist, class:'input form-control'%><br>

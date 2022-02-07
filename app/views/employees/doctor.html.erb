@@ -6,7 +6,10 @@
         <h5 class="card-title">About</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       </div>
-      <div class="card-footer bg-transparent border-success"><%= doctor.specialist.capitalize %><br>Conatct: <%= doctor.phone_number%></div>
+      <div class="card-footer bg-transparent border-success">
+        Conatct: <%= doctor.phone_number%><br>
+        <%= doctor.specialist.capitalize if doctor.specialist.present? %><br>
+      </div>
     </div>
   <% end %>
 </div>

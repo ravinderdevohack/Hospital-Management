@@ -1,16 +1,13 @@
 <div class="d-flex justify-content-center">
   <%= form_with model: @appointment, url: appointments_path, method: :post, id:'myAppointment' do |form| %>
-    <%= form.label :department, "Select a Department"%><br>
-    <%= form.text_field :department, class:'input form-control'%><br>
+    <%= form.label :department_id, "Select a Department"%><br>
+    <%= form.select :department_id, Department.all.collect{ |d| [d.name, d.id]}, class:'input form-select'%><br>
 
     <%= form.label :doctor_id, "Doctor Name"%><br>
-    <%= form.select :doctor_id, Employee.where(employee_type: 'doctor').collect{ |e| [e.name, e.id]}, class:'input form-control'%><br>
+    <%= form.select :doctor_id, Employee.where(employee_type: 'doctor').collect{ |e| [e.name, e.id]}, class:'input form-select'%><br>
 
-    <%= form.label :first_name, " First Name "%><br>
-    <%= form.text_field :first_name, class:'input form-control'%><br>
-
-    <%= form.label :last_name, "Last Name"%><br>
-    <%= form.text_field :last_name, class:'input form-control'%><br>
+    <%= form.label :name, " Name "%><br>
+    <%= form.text_field :name, class:'input form-control'%><br>
 
     <%= form.label :phone_number, "Contact"%><br>
     <%= form.text_field :phone_number, class:'input form-control'%><br>

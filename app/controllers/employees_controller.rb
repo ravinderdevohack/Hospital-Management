@@ -14,35 +14,72 @@ class EmployeesController < ApplicationController
     if @employee.save!
       redirect_to employees_path
     else
-      render new
+      render 'new'
     end
-  end
-
-  def edit
-    @action = 'edit'
-    @employee = Employee.new()
   end
 
   def show
     @employee = Employee.find(params[:id])
   end
 
+  def edit
+    @action = 'edit'
+    @employee = Employee.find(params[:id])
+  end
+
   def update
+    @employee = Employee.find(params[:id])
+    # debugger
+    if current_employee.employee_type == 'admin'
+      if @employee.update(employee_params)
+        redirect_to employees_path
+      else
+        render 'edit'
+      end   
+    else
+      if @employee.update(employee_params)
+        redirect_to employee_path(current_employee[:id])
+      else
+        render 'edit_profile'
+      end
+    end
+
   end
 
   def destroy
-  end
+    @employee = Employee.find(params[:id])
+    @employee.update(active:false)
 
-  def show_employee
+    redirect_to employees_path
   end
-
 
   def doctor
     @employees = Employee.where(employee_type:'doctor')
   end
 
-  private
-  def employee_params
-    params.require(:employee).permit(:employee_type, :name, :qualification, :department, :specialist, :phone_number, :email, :address, :aadhar_number, :salary, :joining_date, :resignation_date)
+  def edit_profile
+    @employee = Employee.find(params[:id])
   end
+
+  # def update_profile
+  #   @employee = Employee.find(params[:id])
+  #   debugger
+  #   if @employee.update(employee_params)
+  #     redirect_to employee_path(current_employee[:id])
+  #   else
+  #     render edit_profile
+  #   end
+
+  # end
+
+  private
+
+  def employee_params
+    params.require(:employee).permit(:employee_type, :name, :qualification, :department_id, :specialist, :phone_number, :email, :address, :aadhar_number, :salary, :joining_date, :resignation_date, :bio)
+  end
+
+  # # def profile_params
+  #   params.require(:employee).permit(:name,)
+  # end
+
 end
