@@ -4,7 +4,7 @@
     Name: <%= @user.name %><br>
     Email: <%= @user.email %><br>
     Phone: <%= @user.phone_number %><br>
-    <%= button_to 'Home', root_path, method: :get %><br>
+    <%= button_to 'Back', employee_signed_in? ? users_path : root_path, method: :get  %><br>
   </div>
  
   

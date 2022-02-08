@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_054109) do
+ActiveRecord::Schema.define(version: 2022_02_07_160353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,25 +21,18 @@ ActiveRecord::Schema.define(version: 2022_02_07_054109) do
     t.string "email"
     t.datetime "DateTime", precision: 6
     t.string "speciality"
-    t.bigint "doctor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "department_id"
+    t.bigint "employee_id"
+    t.bigint "user_id"
     t.index ["department_id"], name: "index_appointments_on_department_id"
-    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+    t.index ["employee_id"], name: "index_appointments_on_employee_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "doctors", force: :cascade do |t|
-    t.string "name"
-    t.string "phone"
-    t.string "specialist"
-    t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -65,8 +58,27 @@ ActiveRecord::Schema.define(version: 2022_02_07_054109) do
     t.string "employee_type"
     t.string "bio"
     t.bigint "department_id"
+    t.string "avatar"
     t.index ["department_id"], name: "index_employees_on_department_id"
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string "name"
+    t.string "age"
+    t.string "sex"
+    t.string "phone_number"
+    t.string "email"
+    t.string "address"
+    t.string "diseases"
+    t.bigint "ward_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "employee_id"
+    t.datetime "addmit_date", precision: 6
+    t.datetime "discharge_date", precision: 6
+    t.index ["employee_id"], name: "index_patients_on_employee_id"
+    t.index ["ward_id"], name: "index_patients_on_ward_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -79,13 +91,18 @@ ActiveRecord::Schema.define(version: 2022_02_07_054109) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "phone_number"
-    t.string "avatar"
     t.integer "user_type", default: 0, null: false
     t.integer "display", default: 1, null: false
     t.string "provider", limit: 50, default: "", null: false
     t.string "uid", limit: 500, default: "", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "wards", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

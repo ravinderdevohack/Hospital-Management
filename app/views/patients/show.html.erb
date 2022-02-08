@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-center">
+  <div class="card text-center" style="width: 20rem;>
+    <div class="card-body">
+      <h6 class="card-title">Patient Name: <%= @patient.name.capitalize %></h6>
+      <p class="card-text">
+        Patient Id: <%= @patient.id %><br>
+        Ward: <%= @patient.ward.name %><br>
+        Doctor Name <%=  @patient.employee.name  %><br>
+        Disease: <%= @patient.diseases %><br>
+        Age: <%= @patient.age %><br>
+        Gender: <%= @patient.sex %><br>
+        Phone: <%= @patient.phone_number %><br>
+        Email: <%= @patient.email %><br> 
+        Address: <%= @patient.address %><br>
+        Admit Date: <%= @patient.addmit_date %><br>
+        Discharge Date: <%= @patient.discharge_date %><br>
+
+      <%= button_to 'Edit Patient', edit_patient_path(@patient.id), method: :get, class:'btn btn-info' %><br>
+
+      <%= button_to 'Back', patients_path, method: :get, class:'btn btn-info' %><br>
+
+      </p>
+    </div>
+  </div>
+</div>

@@ -4,13 +4,13 @@
     <%= form.text_field :name, class:'input form-control'%><br>
 
     <%= form.label :employee_type, "Employee Type"%><br>
-    <%= form.text_field :employee_type, class:'input form-control'%><br>
+    <%= form.text_field :employee_type,  class:'input form-control'%><br>
 
     <%= form.label :department_id, "Department Name"%><br>
     <%= form.select :department_id, Department.all.collect{ |d| [d.name, d.id]}, class:'input form-control'%><br>
 
     <%= form.label :specialist, "Specialist"%><br>
-    <%= form.text_field :specialist, class:'input form-control'%><br>
+    <%= form.text_field :specialist, class:' form-control'%><br>
 
     <%= form.label :phone_number, "Contact"%><br>
     <%= form.text_field :phone_number, class:'input form-control'%><br>
@@ -38,3 +38,49 @@
 </div>
 
 
+
+<script type="text/javascript">
+  var regName = /^[A-Za-z]{3,}$/
+  var regEmployeeType = /^[A-z]+$/ 
+  // var regDepartmentName = /^[A-z]+$/
+  var regSpecialist = /^[A-z]+$/
+  var regPhoneNumber = /^[0-9]{10}$/
+  var regEmail = /^\w[\w+.\-_]+@(gmail).(com)$/
+  var regAadharNumber =  /^[0-9]{12}$/
+  var regAddress = /(.){10,}/ 
+  var regSalary = /^\d+$/
+  var regJoiningDate = /^[\d+-]+$/
+  var regPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/
+
+  
+  var inputArray = document.querySelectorAll(".input");
+  var  myForm = document.getElementById("myEmployee");
+  var alertArray = ['name must be present & character', 'Employee type must be present', 'Contact must be present and valid', 'Email must be present and valid', 'Aadhar Number must be present and valid', 'Address must be present and greater than of 10 length ', 'Salary must be present', 'Joining Date must be present', 'Password must be present']
+  var regArray = [regName, regEmployeeType,  regPhoneNumber, regEmail, regAadharNumber, regAddress, regSalary, regJoiningDate,  regPassword ]
+  var array = []
+  var submit = document.querySelector("#submit-btn");
+  submit.addEventListener("click", validaionCheck);
+  function validaionCheck(e) {
+  var  validation_pass = true
+    for (var i = 0; i < inputArray.length; i++) {
+
+      array.push(inputArray[i].value)
+      console.log(array)
+      if ( !regArray[i].test(array[i])) {
+        alert(alertArray[i]);
+        array.length = 0;
+        validation_pass = false
+        console.log(array[i]);
+        console.log(alertArray[i]);
+        break;
+      }
+    }
+    console.log('validation checked')
+    // if (validation_pass) ? myForm.submit() : e.preventDefault();
+    if (validation_pass) {
+      myForm.submit()
+    }else {
+      e.preventDefault()
+    }
+  }
+</script>

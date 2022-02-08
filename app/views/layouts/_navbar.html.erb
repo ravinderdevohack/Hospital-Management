@@ -6,7 +6,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <% if employee_signed_in? %>
+        <% if employee_signed_in? || user_signed_in? %>
           <li class="nav-item">
             <%= link_to 'Home', hospitals_index_path, method: :get, class: "nav-link" %>
           </li>
@@ -17,10 +17,10 @@
             <%= link_to 'Appointment', appointments_path, method: :get, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Profile', employee_path(current_employee[:id]) ,method: :get, class: 'nav-link' %>
+            <%= link_to 'Profile', employee_signed_in? ? employee_path(current_employee[:id]) : user_path(current_user[:id]), method: :get, class: 'nav-link'%>
           </li>
           <li class="nav-item">
-            <%= link_to 'sign_out', destroy_employee_session_path, method: :get, class: "nav-link float-end" %>
+            <%= link_to 'sign_out', destroy_employee_session_path, method: :get, class: "nav-link float-end", id:'sign-out-btn' %>
           </li>
         <% else %>
           <li class="nav-item">
@@ -33,16 +33,50 @@
             <%= link_to 'Appointment', appointments_path, method: :get, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'sign_in', new_employee_session_path, method: :get, class: "nav-link" %>
+            <%= link_to 'Employee_sign_in', new_employee_session_path, method: :get, class: "nav-link" %>
           </li>
+          <li class="nav-item">
+            <%= link_to 'User_sign_in', new_user_session_path, method: :get, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'User_sign_up', new_user_registration_path, method: :get, class: "nav-link" %>
+          </li>
+          
+        <% end %>
+
+        <% if employee_signed_in? && ( current_employee.employee_type == 'doctor' || current_employee.employee_type == 'admin' || current_employee.employee_type == 'receptionist' )%>
+
+          <li class="nav-item">
+            <%= link_to 'Departments', departments_path, method: :get, class: "nav-link" %>
+          </li>     
+          <li class="nav-item">
+            <%= link_to 'Patient', patients_path, method: :get, class: "nav-link" %>
+          </li>     
+          <li class="nav-item">
+            <%= link_to 'Ward', wards_path, method: :get, class: "nav-link" %>
+          </li>     
         <% end %>
 
         <% if employee_signed_in? && current_employee.employee_type == 'admin'%>
           <li class="nav-item">
             <%= link_to 'Employees', employees_path, method: :get, class: "nav-link" %>
           </li>     
+          <li class="nav-item">
+            <%= link_to 'Users ', users_path, method: :get, class: "nav-link" %>
+          </li>     
         <% end %>
+
+
       </ul>
     </div>
   </div>
 </nav>
+
+
+<script >
+  signOut = document.getElementById("sign-out-btn")
+  signOut.addEventListener('click', function(e){
+    if(confirm('are you sure')){}
+    else{ e.preventDefault()}
+  })
+</script>

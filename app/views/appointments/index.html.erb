@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center">
-  <%= link_to "Make a Appointment", new_appointment_path, medthod: :get, class: "nav-link color-black"%>
+  <%= link_to "Make a Appointment", new_appointment_path, medthod: :get, class: "nav-link color-black" if user_signed_in?%>
 </div>
 <table class="d-flex justify-content-center ">
   <tr>
@@ -12,14 +12,14 @@
     <th class="border-2 p-1">Department Name</th>
   </tr>
   <% @appointments.each do |appointment|%>
-    <% if (employee_signed_in? &&  current_employee.email == appointment.email) ||(employee_signed_in? && current_employee.employee_type == 'admin')  %>
+    <% if ((employee_signed_in? ) && ((current_employee.employee_type == 'admin') || (current_employee.id == appointment.employee_id) || (current_employee.employee_type == 'receptionist'))) || (user_signed_in? &&  current_user.id == appointment.user_id) %>
       <tr>
         <td class="border-2 p-1"><%= appointment.id %></td>
         <td class="border-2 p-1"><%= appointment.name %></td>
         <td class="border-2 p-1"><%= appointment.phone_number %></td>
         <td class="border-2 p-1"><%= appointment.email %></td>
         <td class="border-2 p-1"><%= appointment.created_at %></td>
-        <td class="border-2 p-1"><%= appointment.doctor.name %></td>
+        <td class="border-2 p-1"><%= appointment.employee.name %></td>
       </tr>
     <% end%>
   <% end %>

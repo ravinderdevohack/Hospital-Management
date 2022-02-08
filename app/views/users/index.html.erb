@@ -1,1 +1,44 @@
-users#index
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">user ID</th>
+      <th scope="col">user Name</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Email</th>
+      <th scope="col">Active</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user|%>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.phone_number %></td>
+          <td><%= user.email %></td>
+          <td><%= user.display %></td>
+          <td class="d-flex">
+            <%= button_to 'Details', user_path(user), method: :get, class:'btn btn-info' %>
+              <%= button_to 'Delete', user_path(user), method: :delete, class:'btn btn-primary', id:"delete-btn" %>
+          </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+  button = document.querySelectorAll("#delete-btn");
+  console.log(1)
+  for (var i = 0; i<button.length; i++){
+    button[i].addEventListener('click', function(e) {
+      if(confirm('Are you Sure?')){
+
+      }else {
+        e.preventDefault();
+      }
+
+    })
+
+  }
+</script>

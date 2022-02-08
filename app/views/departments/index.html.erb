@@ -1,0 +1,21 @@
+  <%= link_to 'Add new Department', new_department_path, method: :get if current_employee.employee_type == 'admin' %>
+<div class="d-flex justify-content-center">
+<table>
+  <thead>
+    <tr>
+      <th class="border-2">Department ID</th>
+      <th class="border-2">Department Name</th>
+      <th class="border-2">Number of Employees</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @departments.each do |department|%>
+        <tr>
+          <td class="border-1"><%= department.id %></td>
+          <td class="border-1"><%= department.name %></td>
+          <td class="border-1"><%= department.employees.count%></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

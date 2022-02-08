@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-center">
+  <%= form_with model: @patient, url: @action == 'edit' ? patient_path : patients_path, method: @action == 'edit' ? :patch : :post, id:'myPatient' do |form| %>
+
+    <%= form.label :ward_id, "Ward Name"%><br>
+    <%= form.select :ward_id, Ward.all.collect{ |d| [d.name, d.id]}, class:'input form-control'%><br>
+
+    <%= form.label :employee_id, "Doctor Name"%><br>
+    <%= form.select :employee_id, Employee.where(employee_type: 'doctor').collect{|e| [e.name, e.id]}, class:'input form-control'%><br>
+
+    <%= form.label :name, "Name"%><br>
+    <%= form.text_field :name, class:'input form-control'%><br>
+
+    <%= form.label :age, "Age"%><br>
+    <%= form.text_field :age, class:'input form-control'%><br>
+
+    <%= form.label :sex, "Gender"%><br>
+    <%= form.text_field :sex, class:'input form-control'%><br>
+
+    <%= form.label :phone_number, "Contact"%><br>
+    <%= form.text_field :phone_number, class:'input form-control'%><br>
+
+    <%= form.label :email, "Email"%><br>
+    <%= form.email_field :email, class:'input form-control'%><br>
+
+    <%= form.label :address, "Address"%><br>
+    <%= form.text_area :address, class:'input form-control'%><br>
+
+    <%= form.label :diseases, "Disease"%><br>
+    <%= form.text_field :diseases,  class:'input form-control'%><br>
+
+    <%= form.label :addmit_date, "Admit Date"%><br>
+    <%= form.date_field :addmit_date, class:'input form-control'%><br>
+
+    <%= form.label :discharge_Date, "Discharge Date"%><br>
+    <%= form.date_field :discharge_Date, class:'input form-control'%><br>
+
+    <input type="submit" value="submit", id="submit-btn"></input>
+  <% end %>
+</div>
+
+
