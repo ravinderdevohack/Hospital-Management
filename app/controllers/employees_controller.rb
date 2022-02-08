@@ -31,12 +31,14 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     # debugger
     if current_employee.employee_type == 'admin'
+        debugger
       if @employee.update(employee_params)
         redirect_to employees_path
       else
         render 'edit'
       end   
     else
+      debugger
       if @employee.update(employee_params)
         redirect_to employee_path(current_employee[:id])
       else
@@ -61,25 +63,10 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
   end
 
-  # def update_profile
-  #   @employee = Employee.find(params[:id])
-  #   debugger
-  #   if @employee.update(employee_params)
-  #     redirect_to employee_path(current_employee[:id])
-  #   else
-  #     render edit_profile
-  #   end
-
-  # end
-
   private
 
   def employee_params
-    params.require(:employee).permit(:employee_type, :name, :qualification, :department_id, :specialist, :phone_number, :email, :address, :aadhar_number, :salary, :joining_date, :resignation_date, :bio)
+    params.require(:employee).permit(:employee_type, :name, :qualification, :department_id, :specialist, :phone_number, :email, :address, :aadhar_number, :salary, :joining_date, :resignation_date, :bio, :password, :avatar)
   end
-
-  # # def profile_params
-  #   params.require(:employee).permit(:name,)
-  # end
 
 end

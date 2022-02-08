@@ -1,10 +1,10 @@
 <div class="d-flex justify-content-center">
   <%= form_with model: @appointment, url: appointments_path, method: :post, id:'myAppointment' do |form| %>
     <%= form.label :department_id, "Select a Department"%><br>
-    <%= form.select :department_id, Department.all.collect{ |d| [d.name, d.id]}, class:'input form-select'%><br>
+    <%= form.select :department_id, Department.all.collect{ |d| [d.name, d.id]}, class:' form-select'%><br>
 
-    <%= form.label :doctor_id, "Doctor Name"%><br>
-    <%= form.select :doctor_id, Employee.where(employee_type: 'doctor').collect{ |e| [e.name, e.id]}, class:'input form-select'%><br>
+    <%= form.label :employee_id, "Doctor Name"%><br>
+    <%= form.select :employee_id, Employee.where(employee_type: 'doctor').collect{ |e| [e.name, e.id]}, class:'form-select'%><br>
 
     <%= form.label :name, " Name "%><br>
     <%= form.text_field :name, class:'input form-control'%><br>
@@ -23,3 +23,41 @@
 </div>
 
 
+<script type="text/javascript">
+  var regName = /^[A-Za-z\s]{3,}$/
+  var regPhoneNumber = /^[0-9]{10}$/
+  var regEmail = /^\w[\w+.\-_]+@(gmail).(com)$/
+  var regJoiningDate = /^[\d+-]+$/
+
+  
+  var inputArray = document.querySelectorAll(".input");
+  var  myForm = document.getElementById("myAppointment");
+  var alertArray = ['name must be present ', 'Contact must be valid ', 'Enter valid email address',  'Please Choose a date']
+  var regArray = [regName, regPhoneNumber, regEmail, regJoiningDate]
+  var array = []
+  var submit = document.querySelector("#submit-btn");
+  submit.addEventListener("click", validaionCheck);
+  function validaionCheck(e) {
+  var  validation_pass = true
+    for (var i = 0; i < inputArray.length; i++) {
+
+      array.push(inputArray[i].value)
+      console.log(array)
+      if ( !regArray[i].test(array[i])) {
+        alert(alertArray[i]);
+        array.length = 0;
+        validation_pass = false
+        console.log(array[i]);
+        console.log(alertArray[i]);
+        break;
+      }
+    }
+    console.log('validation checked')
+    // if (validation_pass) ? myForm.submit() : e.preventDefault();
+    if (validation_pass) {
+      myForm.submit()
+    }else {
+      e.preventDefault()
+    }
+  }
+</script>

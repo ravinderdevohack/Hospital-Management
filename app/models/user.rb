@@ -1,8 +1,11 @@
 class User < ApplicationRecord
-  # devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [ :github, :google_oauth2]
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
-  enum user_type: {user: 0, admin: 1}
-  enum display: {show: 1, show_not: 0}
+  has_many :appointments
+
+  
+  enum user_type: {user: 0}
+  enum display: {active: 1, deactive: 0}
 
   def self.create_from_google_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |

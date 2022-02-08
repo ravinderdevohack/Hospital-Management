@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   devise_for :employees, controlllers: { sessions: 'employees/sessions' }
- 
+  devise_for :users
+
   # devise_for :users, controlllers: { sessions: 'users/sessions', omniauth_callbacks: 'users/omniauth'}
   resources :appointments
   resources :doctors
+  resources :patients
+  resources :wards
+  resources :users
+  resources :departments
   resources :employees do
     collection do
       get 'doctor'

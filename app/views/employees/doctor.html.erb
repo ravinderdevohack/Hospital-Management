@@ -9,6 +9,7 @@
       <div class="card-footer bg-transparent border-success">
         Conatct: <%= doctor.phone_number%><br>
         <%= doctor.specialist.capitalize if doctor.specialist.present? %><br>
+        <%=  link_to 'Make a Appointment', new_appointment_path, medthod: :get, class:'nav-link' if user_signed_in?%>
       </div>
     </div>
   <% end %>

@@ -1,16 +1,22 @@
+
 <div class="d-flex justify-content-center">
-  <div class="card text-center" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
+  <div class="card text-center" style="width: 20rem;">
+    <%= image_tag @employee.avatar_url if @employee.avatar_url.present? %>
     <div class="card-body">
-      <h5 class="card-title">Name: <%= @employee.name %></h5>
+      <h5 class="card-title">Name: <%= @employee.name.capitalize %></h5>
       <p class="card-text">
-        Specialist: <%= @employee.specialist %><br>
+        <% if current_employee.employee_type == 'doctor' %>
+          Doctor Id: <%= @employee.id %><br>
+        <% else %>
+          Employee Id: <%= @employee.id %><br>
+        <% end %>
         Department: <%= @employee.department.name %><br>
-        Aadhar Number: <%= @employee.aadhar_number %><br>
+         <%= Specialist  @employee.specialist if @employee.specialist.present? %><br>
         Salary: <%= @employee.salary %><br>
-        Phone: <%= @employee.phone_number %><br>
         Email: <%= @employee.email %><br> 
+        Phone: <%= @employee.phone_number %><br>
         Address: <%= @employee.address %><br>
+        Aadhar Number: <%= @employee.aadhar_number %><br>
         Joining Date: <%= @employee.joining_date %><br>
 
       <%= button_to 'Edit Profile', edit_profile_path(current_employee[:id]), method: :get, class:'btn btn-info' %><br>

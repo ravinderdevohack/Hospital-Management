@@ -8,7 +8,7 @@ class AppointmentsController < ApplicationController
   end
   
   def create
-    @appointment = Appointment.new(appointments_params)
+    @appointment = current_user.appointments.new(appointments_params)
     # debugger
     if @appointment.save!
       redirect_to appointments_path
@@ -32,6 +32,6 @@ class AppointmentsController < ApplicationController
   private
 
   def appointments_params
-    params.require(:appointment).permit(:name,  :phone_number, :email, :doctor_id, :department_id, :DateTime)
+    params.require(:appointment).permit(:name,  :phone_number, :email, :employee_id, :department_id, :DateTime)
   end
 end
