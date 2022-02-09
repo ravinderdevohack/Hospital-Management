@@ -29,6 +29,16 @@ class AppointmentsController < ApplicationController
   def destroy
   end
     
+
+  def doctor
+    @symptoms = params[:symptoms]
+    @doctor = EmployeeDoctor.new(@symptoms).find_doctor
+    # debugger
+    respond_to do |format|
+      format.json{render json: @doctor[0][0].to_json}
+    end
+  end
+
   private
 
   def appointments_params

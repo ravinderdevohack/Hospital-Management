@@ -79,3 +79,5 @@ gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 
 gem 'carrierwave'
+
+gem 'jquery-rails'

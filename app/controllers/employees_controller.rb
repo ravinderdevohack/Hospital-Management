@@ -63,6 +63,13 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
   end
 
+  def find_doctor
+    # @symptoms = params[:symptoms]
+    # # @doctor = Employee.where(employee_type:'doctor')
+    # @doctor = EmployeeDoctor.new(@symptoms).find_doctor
+    # # debugger
+  end
+
   private
 
   def employee_params
