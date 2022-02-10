@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :employees, controlllers: { sessions: 'employees/sessions' }
   devise_for :users
 
@@ -9,6 +10,8 @@ Rails.application.routes.draw do
   resources :wards
   resources :users
   resources :services
+  resources :specialists
+  resources :syndromes
   resources :departments
   resources :employees do
     collection do

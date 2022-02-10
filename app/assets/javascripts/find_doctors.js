@@ -1,23 +1,19 @@
-var symptoms = document.getElementById("appointment_symptoms");
+var syndrome = document.getElementById("appointment_syndrome_id");
 var doctorId = document.getElementById("appointment_employee_id");
-var myForm = document.getElementById("myAppointment");
+var appointmentDate = document.getElementById("appointment_date");
+var appointmentTime = document.getElementById("appointment_appointment_time");
+var availablilty = document.getElementById("available");
 
-symptoms.addEventListener("click", function(){
-  $.ajax({
-    url: "/doctor?symptoms=" + symptoms.value,
-    type: "GET",
-    // dataType: "html"
-    dataType: 'json',
-    success: function(res){
-      doctorId.value = res
-      console.log(res)
-    }
-  })
+
+availablilty.addEventListener("click", function(){
+    $.ajax({
+      url: `/doctor?date=${ appointmentDate.value }+&syndrome=${ syndrome.value }+&appointment_time=${ appointmentTime.value}`,
+      type: "GET",
+      // dataType: "html"
+      // dataType: 'html',
+      // success: function(res){
+      //   doctorId.value = res
+      //   console.log(res)
+      // }
+    })
 })
-
-// state.addEventListener("change", function(){
-//   $.ajax({
-//     url: "/cities?symptoms=" + symptoms.value + "&state=" + state.value,
-//     type: "GET"
-//   })
-// })

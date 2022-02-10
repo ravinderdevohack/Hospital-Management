@@ -9,7 +9,6 @@
     <th class="border-2 p-1">Email</th>
     <th class="border-2 p-1">Date</th>
     <th class="border-2 p-1">Doctor Name</th>
-    <th class="border-2 p-1">Department Name</th>
   </tr>
   <% @appointments.each do |appointment|%>
     <% if ((employee_signed_in? ) && ((current_employee.employee_type == 'admin') || (current_employee.id == appointment.employee_id) || (current_employee.employee_type == 'receptionist'))) || (user_signed_in? &&  current_user.id == appointment.user_id) %>
@@ -18,7 +17,7 @@
         <td class="border-2 p-1"><%= appointment.name %></td>
         <td class="border-2 p-1"><%= appointment.phone_number %></td>
         <td class="border-2 p-1"><%= appointment.email %></td>
-        <td class="border-2 p-1"><%= appointment.created_at %></td>
+        <td class="border-2 p-1"><%= appointment.date %></td>
         <td class="border-2 p-1"><%= appointment.employee.name %></td>
       </tr>
     <% end%>

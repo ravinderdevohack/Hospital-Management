@@ -32,7 +32,7 @@
           <td><%= employee.employee_type %></td>
           <td><%= employee.name %></td>
           <td><%= employee.department.name %></td>
-          <td><%= employee.specialist %></td>
+          <td><%= employee.specialist.pluck(:name) %></td>
           <td><%= employee.phone_number %></td>
           <td><%= employee.email %></td>
           <td><%= employee.address %></td>

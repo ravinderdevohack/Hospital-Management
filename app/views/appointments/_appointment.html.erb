@@ -1,11 +1,5 @@
 <div class="d-flex justify-content-center">
   <%= form_with model: @appointment, url: appointments_path, method: :post, id:'myAppointment' do |form| %>
-    <%= form.label :symptoms, "Symptoms"%><br>
-    <%= form.select :symptoms, [ 'cold', 'fever', 'dentist', 'pregnancy', 'mental_health'], dataType:"script", class:' form-select'%><br>
-
-    <%= form.label :employee_id, "Doctor Name"%><br>
-    <%= form.text_field :employee_id,  class:'form-control'%><br>
-
     <%= form.label :name, " Name "%><br>
     <%= form.text_field :name, class:'input form-control'%><br>
 
@@ -15,14 +9,28 @@
     <%= form.label :email, "Email"%><br>
     <%= form.email_field :email, class:'input form-control'%><br>
 
-    <%= form.label :Datetime, "Choose date"%><br>
-    <%= form.date_field :Datetime, class:'input form-control'%><br>
+    <%= form.label :age, "Age"%><br>
+    <%= form.text_field :age, class:' form-control'%><br>
 
-    <input type="button" value="save", id="submit-btn"></input>
+    <%= form.label :syndrome_id, "Symptoms"%><br>
+    <%= form.select :syndrome_id, Syndrome.all.collect{|s| [s.name, s.id]}, class:' form-select'%><br>
+
+    <%= form.label :date, "Choose date"%><br>
+    <%= form.date_field :date, min: Date.today, max:"2022-03-30", class:'input form-control'%><br>
+
+    <%= form.label :appointment_time, "Choose slot"%><br>
+    <%= form.select :appointment_time, Slot.all.collect{|s| [s.appointment_time, s.appointment_time]},class:' form-control'%><br>
+
+    <%= form.text_field :employee_id, type:'hidden' ,class:' form-control'%><br>
+  
+    <input type="button" value="Check Availablity", id="available"></input>
+
+
+    <input type="submit" value="save", id="submit-btn"></input>
   <% end %>
 </div>
 
-<%= javascript_include_tag "find_doctors" %> 
+ <%= javascript_include_tag "find_doctors" %> 
 
 
 <script type="text/javascript">
@@ -62,4 +70,8 @@
       e.preventDefault()
     }
   }
+
+
 </script>
+
+
