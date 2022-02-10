@@ -1,0 +1,14 @@
+var doctorId = document.getElementById("appointment_employee_id");
+
+
+doctorId.value = <%= @doctor_id%>
+console.log(doctorId.value)
+if (doctorId.value == 'undefined') {
+  alert('date not available')
+  // doctorId.value = ''
+  console.log(2)
+
+}
+
+<% #debugger %>
+

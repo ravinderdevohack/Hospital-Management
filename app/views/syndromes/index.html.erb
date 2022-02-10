@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Syndrome ID</th>
+      <th scope="col">Syndrome Name</th>
+      <th scope="col">Specialist ID</th>
+      <th scope="col">Specialist</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @syndromes.each do |syndrome|%>
+        <tr>
+          <td><%= syndrome.id %></td>
+          <td><%= syndrome.name %></td>
+          <td><%= syndrome.specialist.id %></td>
+          <td><%= syndrome.specialist.name %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

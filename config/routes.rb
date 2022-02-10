@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :employees, controlllers: { sessions: 'employees/sessions' }
   devise_for :users
 
@@ -8,6 +9,9 @@ Rails.application.routes.draw do
   resources :patients
   resources :wards
   resources :users
+  resources :services
+  resources :specialists
+  resources :syndromes
   resources :departments
   resources :employees do
     collection do
@@ -15,6 +19,9 @@ Rails.application.routes.draw do
     end
   end
 
+
+  # get 'doctor', to: 'employees#find_doctor'
+  get 'doctor', to: 'appointments#doctor'
   get 'employees/:id/edit_profile', to: 'employees#edit_profile', as: 'edit_profile'
   # patch 'employees/:id', to: 'employees#update_profile', as: 'update_profile'
 
