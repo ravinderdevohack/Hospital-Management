@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-center">
+  <%= form_with model: @ward, url: @action == 'edit' ? ward_path : wards_path, method: @action == 'edit' ? :patch : :post, id:'myWard' do |form| %>
+    <%= form.label :name, "Ward Name"%><br>
+    <%= form.text_field :name, class:'input form-control', id:'name'%><br>
+
+    <input type="button" value="submit", id="submit-btn"></input>
+  <% end %>
+</div>
+
+
+<script >
+  var button = document.getElementById("submit-btn")
+  var regName = /^[A-z]+$/
+
+  var myWard = document.querySelector("#myWard")
+  var input = document.querySelector(".input")
+  button.addEventListener('click', function(e){
+    if (!regName.test(input.value)) {
+      alert('name must be present')
+      e.preventDefault
+    }else{
+      myWard.submit()
+    }
+  })
+</script>
