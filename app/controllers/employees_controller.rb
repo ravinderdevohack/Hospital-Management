@@ -10,8 +10,8 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
-    # debugger
     if @employee.save!
+      @employee.specialist << Specialist.find_by(id: "#{params[:employee][:specialist_id]}")
       redirect_to employees_path
     else
       render 'new'
@@ -29,9 +29,7 @@ class EmployeesController < ApplicationController
 
   def update
     @employee = Employee.find(params[:id])
-    # debugger
     if current_employee.employee_type == 'admin'
-        debugger
       if @employee.update(employee_params)
         redirect_to employees_path
       else
@@ -63,17 +61,10 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
   end
 
-  def find_doctor
-    # @symptoms = params[:symptoms]
-    # # @doctor = Employee.where(employee_type:'doctor')
-    # @doctor = EmployeeDoctor.new(@symptoms).find_doctor
-    # # debugger
-  end
-
   private
 
   def employee_params
-    params.require(:employee).permit(:employee_type, :name, :qualification, :department_id, :specialist, :phone_number, :email, :address, :aadhar_number, :salary, :joining_date, :resignation_date, :bio, :password, :avatar)
+    params.require(:employee).permit(:employee_type, :name, :qualification, :department_id,  :phone_number, :email, :address, :aadhar_number, :salary, :joining_date, :resignation_date, :bio, :password, :avatar, :specialist_ids)
   end
 
 end

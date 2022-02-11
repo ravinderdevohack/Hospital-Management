@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_10_072430) do
+ActiveRecord::Schema.define(version: 2022_02_11_120444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(version: 2022_02_10_072430) do
     t.bigint "user_id"
     t.integer "symptoms"
     t.date "date"
-    t.time "time"
     t.string "age"
+    t.string "time"
+    t.string "slot"
     t.index ["employee_id"], name: "index_appointments_on_employee_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
@@ -116,10 +117,7 @@ ActiveRecord::Schema.define(version: 2022_02_10_072430) do
 
   create_table "slots", force: :cascade do |t|
     t.string "appointment_time"
-    t.boolean "appointment_booked", default: false
-    t.bigint "employee_id"
     t.date "date"
-    t.index ["employee_id"], name: "index_slots_on_employee_id"
   end
 
   create_table "specialists", force: :cascade do |t|

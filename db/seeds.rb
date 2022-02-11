@@ -17,7 +17,7 @@
 
 # Employee.update_all(shift_start_at:Time, shift_end_at:Time.now.strftime("%I:%M"))
 
-# Slot.create([{appointment_time: '10am-11am'}, {appointment_time: '11am-12am'}, {appointment_time: '12pm-1pm'}, {appointment_time: '1pm-2pm'}, {appointment_time: '2pam-3pm'}, {appointment_time: '3pm-4pm'}, {appointment_time: '4pm-5pm'}, {appointment_time: '5pm-6pm'} ])
+# Slot.create!([{appointment_time: '10am-11am'}, {appointment_time: '11am-12am'}, {appointment_time: '12pm-1pm'}, {appointment_time: '1pm-2pm'}, {appointment_time: '2pam-3pm'}, {appointment_time: '3pm-4pm'}, {appointment_time: '4pm-5pm'}, {appointment_time: '5pm-6pm'} ])
 
 
 # DoctorSlot.create([{employee_id: 1}, {employee_id: 5}, {employee_id: 7}, {employee_id: 9} ])

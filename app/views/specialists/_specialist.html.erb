@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-center">
+  <%= form_with model: @specialist, url: @action == 'edit' ? specialist_path : specialists_path, method: @action == 'edit' ? :patch : :post, id:'myspecialist' do |form| %>
+    <%= form.label :name, "Speciality Name"%><br>
+    <%= form.text_field :name, class:'input form-control'%><br>
+
+    <input type="button" value="submit", id="submit-btn"></input>
+  <% end %>
+</div>
+
+<script >
+  var button = document.getElementById("submit-btn")
+  var regName = /^[A-z]+$/
+
+  var mySpecialist = document.querySelector("#myspecialist")
+  var input = document.querySelector(".input")
+  button.addEventListener('click', function(e){
+    if (!regName.test(input.value)) {
+      alert('name must be present')
+      e.preventDefault
+    }else{
+      myWard.submit()
+    }
+  })
+</script>

@@ -1,2 +1,23 @@
-<h1>Specialists#index</h1>
-<p>Find me in app/views/specialists/index.html.erb</p>
+  <%= link_to 'Add new Specialist', new_specialist_path, method: :get if current_employee.employee_type == 'admin' %>
+
+<div class="d-flex justify-content-center">
+<table>
+  <thead>
+    <tr>
+      <th class="border-2"> ID</th>
+      <th class="border-2"> Name</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @specialists.each do |specialist|%>
+        <tr>
+          <td class="border-1"><%= specialist.id %></td>
+          <td class="border-1"><%= specialist.name %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+

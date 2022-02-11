@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
-  has_many :appointments
+  has_many :appointments, dependent: :destroy
 
   
   enum user_type: {user: 0}
-  enum display: {active: 1, deactive: 0}
+  enum display: {Active: 1, Deactive: 0}
 
   def self.create_from_google_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
