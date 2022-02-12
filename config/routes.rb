@@ -21,7 +21,8 @@ Rails.application.routes.draw do
 
 
   # get 'doctor', to: 'employees#find_doctor'
-  get 'doctor', to: 'appointments#doctor'
+  get 'appointment_doctor', to: 'appointments#doctor'
+  get 'patient_doctor', to: 'patients#doctor'
   get 'employees/:id/edit_profile', to: 'employees#edit_profile', as: 'edit_profile'
   # patch 'employees/:id', to: 'employees#update_profile', as: 'update_profile'
 

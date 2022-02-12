@@ -1,6 +1,6 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id:'myForm'} ) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -16,20 +16,17 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, class:'input' %>
   </div>
 
   <div class="field">
     <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, class:'input' ,autocomplete: "new-password" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, class:'input', autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
@@ -38,3 +35,45 @@
 <% end %>
 
 <%= render "users/shared/links" %>
+
+<!-- 
+
+<script >
+  var regName = /^[A-Za-z]{3,}$/
+  var regPhoneNumber = /^[0-9]{10}$/
+  var regEmail = /^\w[\w+.\-_]+@(gmail).(com)$/
+  var regPassword = /.{6,}/
+  
+  var inputArray = document.querySelectorAll(".input");
+  var  myForm = document.getElementById("myForm");
+  var alertArray = ['name must be present & character', 'Contact must be present and valid', 'Email must be present and valid', 'Password must be present']
+  var regArray = [regName,  regPhoneNumber, regEmail,  regPassword ]
+  var array = []
+  var submit = document.querySelector("#submit-btn");
+  submit.addEventListener("click", validaionCheck);
+  function validaionCheck(e) {
+  var  validation_pass = true
+    for (var i = 0; i < inputArray.length; i++) {
+
+      array.push(inputArray[i].value)
+      console.log(array)
+      if ( !regArray[i].test(array[i])) {
+        alert(alertArray[i]);
+        array.length = 0;
+        validation_pass = false
+        console.log(array[i]);
+        console.log(alertArray[i]);
+        break;
+      }
+    }
+    console.log('validation checked')
+    // if (validation_pass) ? myForm.submit() : e.preventDefault();
+    if (validation_pass) {
+      myForm.submit()
+    }else {
+      e.preventDefault()
+    }
+  }
+</script>
+
+ -->

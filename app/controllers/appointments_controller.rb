@@ -4,6 +4,7 @@ class AppointmentsController < ApplicationController
   end
   
   def new
+    @action = 'new'
     @appointment = Appointment.new()
   end
   
@@ -13,17 +14,27 @@ class AppointmentsController < ApplicationController
     if @appointment.save!
       redirect_to appointments_path
     else
-      render new
+      render 'new'
     end
   end
   
   def edit    
+    @action = 'edit'
+    @appointment = Appointment.find(params[:id])
+
   end
   
   def update
+    @appointment = current_user.appointments.find(params[:id])
+    if @appointment.update(appointments_params)
+      redirect_to appointments_path
+    else
+      render 'edit'
+    end
   end
   
   def show
+    @appointment = Appointment.find(params[:id])
   end
   
   def destroy

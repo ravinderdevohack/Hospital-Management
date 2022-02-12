@@ -6,8 +6,9 @@ var availablilty = document.getElementById("available");
 
 
 availablilty.addEventListener("click", function(){
+  var availabliltyCheck = true
     $.ajax({
-      url: `/doctor?date=${ appointmentDate.value }+&syndrome=${ syndrome.value }+&appointment_time=${ appointmentTime.value}`,
+      url: `/appointment_doctor?date=${ appointmentDate.value }+&syndrome=${ syndrome.value }+&appointment_time=${ appointmentTime.value}`,
       type: "GET",
       // dataType: "html"
       // dataType: 'html',
@@ -17,3 +18,5 @@ availablilty.addEventListener("click", function(){
       // }
     })
 })
+
+

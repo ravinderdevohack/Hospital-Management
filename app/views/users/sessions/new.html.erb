@@ -3,12 +3,12 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'input' %>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password", class:'input' %>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -24,3 +24,46 @@
 <% end %>
 
 <%= render "users/shared/links" %>
+
+
+
+<!-- 
+
+
+<script >
+  var regEmail = /^\w[\w+.\-_]+@(gmail).(com)$/
+  var regPassword = /.{6,}/
+  // console.log(1)
+  
+  var inputArray = document.querySelectorAll(".input");
+  var alertArray = [ 'Email must be present and valid', 'Password must be present and valids']
+  var regArray = [ regEmail,  regPassword ]
+  var array = []
+  var submit = document.querySelector("#submit-btn");
+  submit.addEventListener("click", validaionCheck);
+  function validaionCheck(e) {
+  var  validation_pass = true
+    for (var i = 0; i < inputArray.length; i++) {
+
+      array.push(inputArray[i].value)
+      console.log(array)
+      if ( !regArray[i].test(array[i])) {
+        alert(alertArray[i]);
+        array.length = 0;
+        validation_pass = false
+        console.log(array[i]);
+        console.log(alertArray[i]);
+        break;
+      }
+    }
+    console.log('validation checked')
+    // if (validation_pass) ? myForm.submit() : e.preventDefault();
+    if (validation_pass) {
+      myForm.submit()
+    }else {
+      e.preventDefault()
+    }
+  }
+</script>
+
+ -->

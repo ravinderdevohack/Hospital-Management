@@ -20,6 +20,10 @@
             <%= link_to 'Appointment', appointments_path, method: :get, class: "nav-link" %>
           </li>
           <li class="nav-item">
+            <%= link_to 'Patient', patients_path, method: :get, class: "nav-link" %>
+          </li>     
+
+          <li class="nav-item">
             <%= link_to 'Profile', employee_signed_in? ? employee_path(current_employee[:id]) : user_path(current_user[:id]), method: :get, class: 'nav-link'%>
           </li>
           <li class="nav-item">
@@ -48,9 +52,6 @@
 
           <li class="nav-item">
             <%= link_to 'Departments', departments_path, method: :get, class: "nav-link" %>
-          </li>     
-          <li class="nav-item">
-            <%= link_to 'Patient', patients_path, method: :get, class: "nav-link" %>
           </li>     
           <li class="nav-item">
             <%= link_to 'Ward', wards_path, method: :get, class: "nav-link" %>
