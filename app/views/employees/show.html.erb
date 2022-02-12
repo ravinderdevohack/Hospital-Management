@@ -11,7 +11,7 @@
           Employee Id: <%= @employee.id %><br>
         <% end %>
         Department: <%= @employee.department.name %><br>
-         <%= Specialist  @employee.specialist if @employee.specialist.present? %><br>
+         <%=   @employee.specialist.pluck(:name) if @employee.specialist.present? %><br>
         Salary: <%= @employee.salary %><br>
         Email: <%= @employee.email %><br> 
         Phone: <%= @employee.phone_number %><br>

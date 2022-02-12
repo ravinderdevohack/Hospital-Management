@@ -1,48 +1,52 @@
-<%= link_to 'Add Patient', new_patient_path, method: :get if current_employee.employee_type == 'receptionist' %>
+<%= link_to 'Add Patient', new_patient_path, method: :get if ((user_signed_in?) || (employee_signed_in? && current_employee.employee_type == 'receptionist')) %>
+<% if ((user_signed_in? && current_user.patients.present?) || (employee_signed_in?)) %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Patient ID</th>
-      <th scope="col">Patient Name</th>
-      <th scope="col">Patient Sex</th>
-      <th scope="col">Patient Age</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col">Email</th>
-      <th scope="col">Address</th>
-      <th scope="col">Diseases</th>
-      <th scope="col">Doctor Name</th>
-      <th scope="col">Ward Name</th>
-      <th scope="col">Admitted Date</th>
-      <th scope="col">Discharge Date</th>
-      <th scope="col">Action</th>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Patient ID</th>
+        <th scope="col">Patient Name</th>
+        <th scope="col">Patient Sex</th>
+        <th scope="col">Patient Age</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Symptoms</th>
+        <th scope="col">Doctor Name</th>
+        <th scope="col">Ward Name</th>
+        <th scope="col">Admitted Date</th>
+        <th scope="col">Discharge Date</th>
+        <th scope="col">Action</th>
 
-    </tr>
-  </thead>
-  <tbody>
-    <% @patients.each do |patient|%>
-        <tr>
-          <td><%= patient.id %></td>
-          <td><%= patient.name %></td>
-          <td><%= patient.sex %></td>
-          <td><%= patient.age %></td>
-          <td><%= patient.phone_number %></td>
-          <td><%= patient.email %></td>
-          <td><%= patient.address %></td>
-          <td><%= patient.diseases %></td>
-          <td><%= patient.employee.name %></td>
-          <td><%= patient.ward.name  %></td>
-          <td><%= patient.addmit_date %></td>
-          <td><%= patient.discharge_date %></td>
-          <td class="d-flex">
-            <%= button_to 'Details', patient_path(patient), method: :get, class:'btn btn-info' %>
-            <%= button_to 'Edit', edit_patient_path(patient), method: :get, class:'btn btn-success' %>
-            <%= button_to 'Delete', patient_path(patient), method: :delete, class:'btn btn-primary', id:"delete-btn" %>
-          </td>
-        </tr>
-    <% end %>
-  </tbody>
-</table>
+      </tr>
+    </thead>
+    <tbody>
+      <% @patients.each do |patient|%>
+      <% if ((employee_signed_in? ) && ((current_employee.employee_type == 'admin') || (current_employee.employee_type == 'receptionist'))) || (user_signed_in? &&  current_user.id == patient.user_id) %>
+          <tr>
+            <td><%= patient.id %></td>
+            <td><%= patient.name %></td>
+            <td><%= patient.sex %></td>
+            <td><%= patient.age %></td>
+            <td><%= patient.phone_number %></td>
+            <td><%= patient.email %></td>
+            <td><%= patient.address %></td>
+            <td><%= patient.diseases %></td>
+            <td><%= patient.employee.name %></td>
+            <td><%= patient.ward.name  %></td>
+            <td><%= patient.addmit_date.strftime('%m-%m-%Y') %></td>
+            <td><%= patient.discharge_date %></td>
+            <td class="d-flex">
+              <%= button_to 'Details', patient_path(patient), method: :get, class:'btn btn-info' %>
+              <%= button_to 'Edit', edit_patient_path(patient), method: :get, class:'btn btn-success' %>
+              <%= button_to 'Delete', patient_path(patient), method: :delete, class:'btn btn-primary', id:"delete-btn" if employee_signed_in?%>
+            </td>
+          </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end%>
 
 <script>
   button = document.querySelectorAll("#delete-btn");

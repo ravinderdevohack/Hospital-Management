@@ -5,9 +5,6 @@ class Employee < ApplicationRecord
   has_many :employees_specialists
   has_many :specialist, through: :employees_specialists
 
-  has_many :doctor_slots, dependent: :destroy
-  has_many :slots ,dependent: :destroy
-
   belongs_to :department
   has_many :patients, dependent: :destroy
   has_many :appointments, dependent: :destroy
